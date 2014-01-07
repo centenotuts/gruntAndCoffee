@@ -19,9 +19,15 @@ module.exports = function(grunt){
 		},
 
 		compass: {
-			dist: {
+			build: {
 				options: {
 					config: 'config.rb'
+				}
+			},
+			dev: {
+				options: {
+					config: 'config.rb',
+					watch: true
 				}
 			}
 		},
@@ -52,23 +58,28 @@ module.exports = function(grunt){
 			}
 		},
 
+		concurrent: {
+			watch: {
+				tasks: ['watch', 'compass:dev'],
+				options: {
+					logConcurrentOutput: true
+				}
+			}
+		},
+
 		watch: {    
 		    js: {
 		        files: ['src/<%= pkg.name %>.js'],
-		        tasks: ['jshint', 'uglify:pkg_target']
-		    },
-		    css: {
-		    	files: ['src/sass/**/*.scss'],
-		    	tasks: ['buildcss']
+		        tasks: ['jshint']
 		    },
 		    coffee: {
 		    	files: ['src/coffee/*.coffee'],
-		    	tasks: ['buildcoffee']
+		    	tasks: ['coffeelint', 'coffee']
 		    }
 		}
 	});
 
-	grunt.registerTask('default', []);
-	grunt.registerTask('buildcss',  ['compass']);
-	grunt.registerTask('buildcoffee', ['coffeelint', 'coffee', 'uglify:coffee_target']);
+	grunt.registerTask('default', ['concurrent:watch']);
+	grunt.registerTask('build', ['compass:build', 'jshint', 'coffeelint', 'coffee', 'uglify']);
+	grunt.registerTask('test', []);
 };
