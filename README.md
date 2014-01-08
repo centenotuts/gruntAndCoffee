@@ -5,10 +5,12 @@ a test repo for setting up grunt.  also developing coffeescript chops by convert
 
 ## Getting Setup
 
+Make sure you have Node ~> v0.10.24 and Ruby ~> v2.0.0 installed
+
 From your working directory:
 
+* `$ gem install bundler`
 * `$ bundle install`
-* `$ npm install -g coffee-script`
 * `$ npm install -g grunt-cli`
 * `$ npm install`
 
