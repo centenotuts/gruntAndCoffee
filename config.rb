@@ -1,18 +1,17 @@
-# Require any additional compass plugins here.
+require 'toolkit'
+require 'breakpoint'
 
-disable_warnings = true
+FileUtils.mkdir_p('build')
 
 # Set this to the root of your project when deployed:
-project_path = "build"
-http_path = "/"
-css_dir = "css"
-sass_dir = "../src/sass"
-images_dir = "images"
-javascripts_dir = "src"
-relative_assets = false
-#requires
-require 'toolkit';
-require 'breakpoint';
+project_path     = "build"
+http_path        = "/"
+css_dir          = "css"
+sass_dir         = "../src/sass"
+images_dir       = "images"
+javascripts_dir  = "src"
+relative_assets  = false
+disable_warnings = true
 
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = :compressed
