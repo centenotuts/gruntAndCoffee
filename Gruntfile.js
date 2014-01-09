@@ -14,7 +14,7 @@ module.exports = function(grunt){
 			},
 
 			coffee_target: {
-				files: {'build/scripts/coffee-compiled.min.js' : ['.coffee-compiled/coffee-compiled.js']}
+				files: {'build/scripts/responsive-compiled.min.js' : ['.coffee-compiled/responsive-compiled.js']}
 			}
 		},
 
@@ -32,17 +32,45 @@ module.exports = function(grunt){
 			}
 		},
 
+		jasmine: {
+			responsiveTest: {
+				options: {
+					specs: 'test/responsive/*.spec.js'
+				},
+				src: ['.coffee-compiled/*.js']
+			},
+			demoTest: {
+				options: {
+					specs: 'test/demo/*.spec.js'
+				},
+				src: ['src/demo.js']
+			}
+		},
+
 		jshint: {
-		  // define the files to lint
-		  files: ['src/**/*.js', 'test/**/*.js'],
-		  // configure JSHint (documented at http://www.jshint.com/docs/)
-		  options: {
-		      // more options here if you want to override JSHint defaults
-		    globals: {
-		      jQuery: true,
-		      console: true,
-		      module: true
-		    }
+		  srcFiles: {
+		  	files: {
+		  		src: ['src/**/*.js']
+		  	},
+			  options: {
+			    globals: {
+			      jQuery: true,
+			      console: true,
+			      module: true
+			    }
+			  }
+		  },
+		  testFiles: {
+		  	files: {
+		  		src: ['test/**/*.js']
+		  	},
+			  options: {
+			    globals: {
+			      jQuery: true,
+			      console: true,
+			      module: true
+			    }
+			  }
 		  }
 		},
 
@@ -53,7 +81,7 @@ module.exports = function(grunt){
 		coffee: {
 			compile: {
 				files: {
-					'.coffee-compiled/coffee-compiled.js' : 'src/coffee/*.coffee'
+					'.coffee-compiled/responsive-compiled.js' : 'src/coffee/*.coffee'
 				}
 			}
 		},
@@ -69,17 +97,17 @@ module.exports = function(grunt){
 
 		watch: {    
 		    js: {
-		        files: ['src/<%= pkg.name %>.js'],
-		        tasks: ['jshint']
+		        files: ['src/<%= pkg.name %>.js', 'test/demo/*.spec.js'],
+		        tasks: ['jshint', 'jasmine:demoTest']
 		    },
 		    coffee: {
-		    	files: ['src/coffee/*.coffee'],
-		    	tasks: ['coffeelint', 'coffee']
+		    	files: ['src/coffee/*.coffee', 'test/responsive/*.spec.js'],
+		    	tasks: ['coffeelint', 'coffee', 'jshint:testFiles', 'jasmine:responsiveTest']
 		    }
 		}
 	});
 
 	grunt.registerTask('default', ['concurrent:watch']);
-	grunt.registerTask('build', ['compass:build', 'jshint', 'coffeelint', 'coffee', 'uglify']);
-	grunt.registerTask('test', []);
+	grunt.registerTask('build', ['compass:build', 'test', 'uglify']);
+	grunt.registerTask('test', ['jshint', 'coffeelint', 'coffee', 'jasmine']);
 };
