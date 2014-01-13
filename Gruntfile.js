@@ -10,11 +10,11 @@ module.exports = function(grunt){
 				options: {
 					banner: '/*! <%= pkg.name %> | version: <%= pkg.version %> */\n'
 				},
-				files: {'build/scripts/<%= pkg.name %>.min.js' : ['src/<%= pkg.name %>.js']}
+				files: {'dist/scripts/<%= pkg.name %>.min.js' : ['src/<%= pkg.name %>.js']}
 			},
 
 			coffee_target: {
-				files: {'build/scripts/responsive-compiled.min.js' : ['.coffee-compiled/responsive-compiled.js']}
+				files: {'dist/scripts/responsive-compiled.min.js' : ['.coffee-compiled/responsive-compiled.js']}
 			}
 		},
 
