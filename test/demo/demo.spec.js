@@ -17,6 +17,16 @@ describe("demo", function () {
       expect(later).toEqual("later");
     });
 
+    it("says take care", function () {
+      var takeCare = test.takeCare();
+      expect(takeCare).toEqual("take care");
+    });
+
+  });
+
+  describe("demo object", function () {
+
+    var demoTest = new demo();
   });
   
 });
