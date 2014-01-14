@@ -14,6 +14,8 @@ From your working directory:
 * `$ npm install -g grunt-cli`
 * `$ npm install`
 
+_If you're using rbenv, run `rbenv rehash` after the installation to ensure the shim is created_
+
 You can verify everything is working by executing
 
 `$ grunt build`
