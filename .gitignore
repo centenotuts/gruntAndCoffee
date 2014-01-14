@@ -4,3 +4,4 @@ node_modules
 .coffee-compiled
 build
 .serve
+Gemfile.lock
