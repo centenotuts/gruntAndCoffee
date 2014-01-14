@@ -20,4 +20,4 @@ You can verify everything is working by executing
 
 `$ grunt build`
 
-You should now have a _build_ folder with the minified contents.
+You should now have a _dist_ folder with the minified contents.

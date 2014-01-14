@@ -1,15 +1,16 @@
 require 'toolkit'
 require 'breakpoint'
 
-FileUtils.mkdir_p('build')
+FileUtils.mkdir_p('dist')
 
 # Set this to the root of your project when deployed:
-project_path     = "build"
+project_path     = "dist"
 http_path        = "/"
 css_dir          = "css"
 sass_dir         = "../src/sass"
 images_dir       = "images"
 javascripts_dir  = "src"
+cache_dir        = "../.sass-cache"
 relative_assets  = false
 disable_warnings = true
 
