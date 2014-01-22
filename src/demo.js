@@ -36,4 +36,6 @@
 
   window.demo = demo;
 
+  alert('hello');
+
 }());
