@@ -8,7 +8,7 @@ module.exports = function(grunt){
       },
       dev: {
         options: {
-          config: 'config.rb',
+          config: 'config_dev.rb',
           watch: true
         }
       }
