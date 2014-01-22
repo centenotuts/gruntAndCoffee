@@ -6,7 +6,7 @@ module.exports = function(grunt){
 		pkg: grunt.file.readJSON('package.json'),
 	});
 	grunt.loadTasks('grunt_tasks');
-	grunt.registerTask('default', ['concurrent:watch']);
+	grunt.registerTask('default', ['connect:serve', 'open', 'concurrent:watch']);
 	grunt.registerTask('build', ['compass:build', 'test', 'uglify', 'copy:jsFilesDist']);
 	grunt.registerTask('test', ['jshint', 'coffeelint', 'coffee', 'jasmine']);
 };
